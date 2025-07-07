@@ -1,0 +1,5 @@
+// routes/web.php
+use App\Http\Controllers\StripePaymentController;
+
+Route::get('/payment', [StripePaymentController::class, 'index']);
+Route::post('/payment', [StripePaymentController::class, 'makePayment'])->name('payment');
