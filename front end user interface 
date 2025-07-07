@@ -1,0 +1,22 @@
+const handleLogin = async (email, password) => {
+    const response = await fetch('/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        if (data.role === 'admin') {
+            // Redirect to admin dashboard
+            window.location.href = '/admin';
+        } else {
+            // Redirect to user dashboard
+            window.location.href = '/user';
+        }
+    } else {
+        alert('Invalid credentials');
+    }
+};
