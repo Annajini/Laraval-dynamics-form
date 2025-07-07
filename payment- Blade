@@ -1,0 +1,26 @@
+<!-- resources/views/payment.blade.php -->
+<html>
+<head>
+    <title>Laravel Stripe Payment</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+@if(session('success'))
+    <p style="color: green;">{{ session('success') }}</p>
+@endif
+
+<form action="{{ route('payment') }}" method="post" id="payment-form">
+    @csrf
+    <input type="text" name="cardholder-name" placeholder="Cardholder Name" required><br><br>
+    <div id="card-element"></div><br>
+    <button type="submit">Pay</button>
+</form>
+
+<script>
+    const stripe = Stripe("{{ env('STRIPE_KEY') }}");
+    const elements = stripe.elements();
+    const card = elements.create('card');
+    card.mount('#card-element');
+</script>
+</body>
+</html>
