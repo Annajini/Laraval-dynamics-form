@@ -1,4 +1,3 @@
-<!-- resources/views/payment.blade.php -->
 <html>
 <head>
     <title>Laravel Stripe Payment</title>
