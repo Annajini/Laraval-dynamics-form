@@ -1,6 +1,4 @@
-// app/Http/Controllers/StripePaymentController.php
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Charge;
@@ -17,7 +15,7 @@ class StripePaymentController extends Controller
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
         Charge::create([
-            'amount' => 100 * 100, // 100 USD in cents
+            'amount' => 100 * 100
             'currency' => 'usd',
             'source' => $request->stripeToken,
             'description' => 'Test payment from Laravel app',
